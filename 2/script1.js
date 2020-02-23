@@ -1,19 +1,20 @@
 window.addEventListener('DOMContentLoaded', function(){
 	'use strict';
 
-	let greeting = document.querySelector('.greeting'),
+	const greeting = document.querySelector('.greeting'),
 	weekDay = document.querySelector('.weekday'),
 	currenTime = document.querySelector('.currenTime'),
 	timerHours = document.querySelector('#timer-hours'),
 	timerMinutes = document.querySelector('#timer-minutes'),
-	timerSeconds = document.querySelector('#timer-seconds'),
-	dateNow = new Date(),
+	timerSeconds = document.querySelector('#timer-seconds'),	
 	deadline = '01 January 2021 00:00:00';
+
+	let dateNow;
 	
 
-	function sayWelcome(){
+	const sayWelcome = () =>{
 		dateNow = new Date();
-		let hoursNow = dateNow.getHours();
+		const hoursNow = dateNow.getHours();
 		if(hoursNow >0 && hoursNow < 12){
 			greeting.textContent = "Goog morning";
 		} else if(hoursNow >= 12  && hoursNow < 18){
@@ -25,17 +26,17 @@ window.addEventListener('DOMContentLoaded', function(){
 
 	
 
-	function getWeeekDay (){
+	const getWeeekDay = () => {
 		dateNow = new Date();
-		let jsWeekDay = dateNow.getDay();
-		let daysArr = ['Воскресенье', 'Понедельник' , 'Вторник' , 'Среда' , 'Четверг' , 'Пятница' , 'Суббота'];
+		const jsWeekDay = dateNow.getDay();
+		const daysArr = ['Воскресенье', 'Понедельник' , 'Вторник' , 'Среда' , 'Четверг' , 'Пятница' , 'Суббота'];
 		weekDay.textContent = daysArr[jsWeekDay];
 	}
 
 
-	function getCurrentTime(){
+	const getCurrentTime = () =>{
 		dateNow = new Date();
-		let currHours = dateNow.getHours(),
+		const currHours = dateNow.getHours(),
 		currMinutes = dateNow.getMinutes(),
 		currSeconds = dateNow.getSeconds();
 
@@ -44,8 +45,8 @@ window.addEventListener('DOMContentLoaded', function(){
 	}
 
 
-	function getTimeRemaining(deadline){
-		let dateStop = new Date(deadline).getTime(),
+	const getTimeRemaining = (deadline) =>{
+		const dateStop = new Date(deadline).getTime(),
 		dateNow = new Date(),
 		dateCurrent = dateNow.getTime(),
 		timeRemaning = (dateStop - dateCurrent) /1000,
@@ -61,9 +62,9 @@ window.addEventListener('DOMContentLoaded', function(){
 	}	
 
 
-	function updateTimer(){      
+	const updateTimer = () => {      
 
-		let timer =  getTimeRemaining(deadline);
+		const timer =  getTimeRemaining(deadline);
 
 		for (let key in timer){
 			if(timer[key]<10 ){
@@ -78,7 +79,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
 	}
 
-	function update(){
+	const update = () => {
 		updateTimer()
 		sayWelcome()
 		getCurrentTime()

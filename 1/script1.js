@@ -4,14 +4,15 @@ window.addEventListener('DOMContentLoaded', function(){
 	//timer
 
 
-	let timerHours = document.querySelector('#timer-hours'),
+	const timerHours = document.querySelector('#timer-hours'),
 	timerMinutes = document.querySelector('#timer-minutes'),
-	timerSeconds = document.querySelector('#timer-seconds'),
-	deadline = '08 March 2020';
+	timerSeconds = document.querySelector('#timer-seconds');
+
+	let deadline = '08 March 2020';
 
 
-	function getTimeRemaining(deadline){
-		let dateStop = new Date(deadline).getTime(),
+	const getTimeRemaining = (deadline) => {
+		const dateStop = new Date(deadline).getTime(),
 		dateNow = new Date().getTime(),
 		timeRemaning = (dateStop - dateNow) /1000,
 		seconds =  Math.floor(timeRemaning % 60),
@@ -26,7 +27,7 @@ window.addEventListener('DOMContentLoaded', function(){
 	}	
 
 
-	function updateClock(){
+	const updateClock = () => {
 
 		let timer =  getTimeRemaining(deadline);
 
@@ -43,6 +44,10 @@ window.addEventListener('DOMContentLoaded', function(){
 	}
     updateClock()
 	setInterval(updateClock, 1000);
+
+
+
+
 	
 
 
