@@ -4,9 +4,7 @@ window.addEventListener('DOMContentLoaded', function(){
 	const greeting = document.querySelector('.greeting'),
 	weekDay = document.querySelector('.weekday'),
 	currenTime = document.querySelector('.currenTime'),
-	timerHours = document.querySelector('#timer-hours'),
-	timerMinutes = document.querySelector('#timer-minutes'),
-	timerSeconds = document.querySelector('#timer-seconds'),	
+	timerDays = document.querySelector('#timer-days'),	
 	deadline = '01 January 2021 00:00:00';
 
 	let dateNow;
@@ -40,7 +38,19 @@ window.addEventListener('DOMContentLoaded', function(){
 		currMinutes = dateNow.getMinutes(),
 		currSeconds = dateNow.getSeconds();
 
-		currenTime.textContent = `${currHours}  : ${currMinutes} : ${currSeconds}`;
+		let dataArr = [];
+		dataArr.push(currHours);
+		dataArr.push(currMinutes);
+		dataArr.push(currSeconds);
+	
+
+	    for(let i =0; i< dataArr.length; i++){
+	    	if(dataArr[i] < 10){
+	    		dataArr[i] = '0' +dataArr[i];
+	    	}
+	    }
+
+		currenTime.textContent = dataArr[0] + ':' +dataArr[1] + ':' + dataArr[2];
 
 	}
 
@@ -50,13 +60,12 @@ window.addEventListener('DOMContentLoaded', function(){
 		dateNow = new Date(),
 		dateCurrent = dateNow.getTime(),
 		timeRemaning = (dateStop - dateCurrent) /1000,
-		seconds =  Math.floor(timeRemaning % 60),
-		minutes =  Math.floor((timeRemaning / 60) % 60),        
-		hours =  Math.floor(timeRemaning / 60 / 60);
+		days =  Math.floor(timeRemaning / 60 /60 /24);
+				
 		if(timeRemaning > 0){
-			return {hours, minutes, seconds};
+			return {days};
 		}else{
-			return {hours: '0', minutes: '0', seconds: '0'};
+			return {days: '0'};
 		}
 
 	}	
@@ -72,9 +81,8 @@ window.addEventListener('DOMContentLoaded', function(){
 			}
 		}
 
-		timerHours.textContent = timer.hours;
-		timerMinutes.textContent = timer.minutes;
-		timerSeconds.textContent = timer.seconds;
+		timerDays.textContent = timer.days;
+		
 
 
 	}
